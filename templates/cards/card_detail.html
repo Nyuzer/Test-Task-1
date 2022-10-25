@@ -1,0 +1,33 @@
+{% extends '_base.html' %}
+
+<title>{% block title %}Detail Info{% endblock %}</title>
+
+<body>
+{% block content %}
+<div>
+    <h2>Seria: {{ card.seria }} | Number: {{ card.num }}</h2>
+    <p>Date of manufacture: {{ card.date_of_manufacture }} | End date: {{ card.end_date }} | Last use: {{ card.use_date }}</p>
+    <p>Amount of money: {{ card.amount }}</p>
+    <p>Card status: {{ card.status }}</p>
+    <a href="{% url 'card_delete' card.pk %}">Delete</a> |
+    <a href="{% url 'card_update' card.pk %}">Update</a> |
+    <a href="{% url 'card_list' %}">To all cards</a>
+    <br>
+    <p>History of purchases</p>
+    {% for desc in card.history.all %}
+    <ul>
+        <li>{{ desc }}</li>
+    </ul>
+    {% endfor %}
+
+    {% if message %}
+    <p>{{ message }}</p>
+    {% endif %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Add</button>
+    </form>
+</div>
+{% endblock %}
+</body>

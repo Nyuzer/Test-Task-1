@@ -1,0 +1,32 @@
+{% extends '_base.html' %}
+
+<title>{% block title %}Cards{% endblock title %}</title>
+
+<body>
+{% block content %}
+<center>
+        {% for card in cards %}
+    <!--<div class="container">
+        <p>Seria: <span class="badge badge-secondary">{{ card.seria }}</span> | Number: <span class="badge badge-secondary">{{ card.num }}</span> | End date: <span class="badge badge-secondary">{{ card.end_date }}</span></p>
+        <p>Card status: <span class="badge badge-secondary">{{ card.status }}</span></p>
+        <a href="{% url 'card_detail' card.pk %}" class="badge badge-primary">Info</a> |
+        <a href="{% url 'card_update' card.pk %}" class="badge badge-primary">Update</a> |
+        <a href="{% url 'card_delete' card.pk %}" class="badge badge-danger">Delete</a>
+    </div>
+    -->
+    <div class="card">
+    <div class="card-header">
+    Seria: <span class="badge badge-secondary">{{ card.seria }}</span>
+    </div>
+    <div class="card-body">
+    <h5 class="card-title">Number: <span class="badge badge-secondary">{{ card.num }}</span> | End date: <span class="badge badge-secondary">{{ card.end_date }}</span></h5>
+    <h5>Card status: <span class="badge badge-secondary">{{ card.status }}</span></h5>
+        <p class="card-text"><a href="{% url 'card_detail' card.pk %}" class="badge badge-primary">Info</a> |
+        <a href="{% url 'card_update' card.pk %}" class="badge badge-primary">Update</a> |
+        <a href="{% url 'card_delete' card.pk %}" class="badge badge-danger">Delete</a></p>
+    </div>
+    </div>
+    {% endfor %}
+</center>
+{% endblock content %}
+</body>

@@ -1,0 +1,26 @@
+{% extends '_base.html' %}
+
+<title>{% block title %}Search{% endblock %}</title>
+
+{% block content %}
+<div>
+    {% if cards_list|length > 0 %}
+        {% for card in cards_list %}
+                <div class="card">
+                <div class="card-header">
+                Seria: <span class="badge badge-secondary">{{ card.seria }}</span>
+                </div>
+                <div class="card-body">
+                <h5 class="card-title">Number: <span class="badge badge-secondary">{{ card.num }}</span> | End date: <span class="badge badge-secondary">{{ card.end_date }}</span></h5>
+                <h5>Card status: <span class="badge badge-secondary">{{ card.status }}</span></h5>
+                <p class="card-text"><a href="{% url 'card_detail' card.pk %}" class="badge badge-primary">Info</a> |
+                <a href="{% url 'card_update' card.pk %}" class="badge badge-primary">Update</a> |
+                <a href="{% url 'card_delete' card.pk %}" class="badge badge-danger">Delete</a></p>
+                </div>
+                </div>
+        {% endfor %}
+    {% else %}
+        <p>Nothing was found</p>
+    {% endif %}
+</div>
+{% endblock %}
